@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="app.js"></script>
+    <script>
+        do {
+            var d = parseInt(prompt("Mời bạn nhập số nguyên d: "))
+
+            //Kiểm tra số nhập vào phải là số không được nhập chữ số
+            function kiemTra(d) {
+                while (isNaN(d) == true) {
+                    d = parseInt(prompt("Hãy nhập số! Mời bạn nhập lại số nguyên d: "))
+                }
+                return d
+            }
+            d = kiemTra(d)
+        } while (false)
+    </script>
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        div {
+            background-color: black;
+            text-align: center;
+            width: 750px;
+            height: 200px;
+            margin: 0 auto;
+            border: 2px solid white;
+            margin-top: 100px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            padding-top: 5px;
+            font-size: 50px;
+        }
+
+        body {
+            background-image: url(nen.gif);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+    <div>
+        <script>
+            //Tính tổng c của a và b
+            var c = a + b
+            //In ra kết quả bằng document.write
+            document.write("<p>Kết quả tính tổng c của a và b là: " + c + "<p>")
+            //In ra kết quả bằng console.log
+            console.log("Kết quả tính tổng c của a và b là: " + c)
+
+            //Tính tổng result của c và d
+            var result = c + d
+            //In ra kết quả bằng alert
+            alert("Kết quả tính tổng result của c và d là: " + result)
+            //In ra kết quả bằng console.log
+            console.log("Kết quả tính tổng result của c và d là: " + result)
+        </script>
+    </div>
+</body>
+
+</html>
