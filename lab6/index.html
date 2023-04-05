@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Slider Ảnh</title>
+    <style>
+      #slider-container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+      }
+      #slider-images {
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+        position: relative;
+      }
+      #slider-images img {
+        max-height: 500px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      #slider-images .current {
+        opacity: 1;
+      }
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        width: 30px;
+        height: 30px;
+        background-color: rgba(255,255,255,0.8);
+        font-size: 20px;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        z-index: 99;
+      }
+      .slider-arrow.left {
+        left: 10px;
+      }
+      .slider-arrow.right {
+        right: 10px;
+        transform: translateY(-50%);
+      }
+      .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+      }
+      .slider-dots .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #fff;
+        margin-right: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .slider-dots .dot.active {
+        transform: scale(1.2);
+        background-color: #7FCEB0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="slider-container">
+      <div id="slider-images">
+        <img class="current" src="images/sky.png" alt="">
+        <img src="images/293178160_599256011583418_8412656275380771146_n.jpg" alt="">
+        <img src="images/aaa.jpg" alt="">
+        <img src="images/anhtien.jpg" alt="">
+      </div>
+      <div class="slider-arrow left">&#10094;</div>
+      <div class="slider-arrow right">&#10095;</div>
+      <div class="slider-dots"></div>
+    </div>
+    <script>
+      var currentSlide = 0;
+      var slides = document.querySelectorAll('#slider-images img');
+      var prevButton = document.querySelector('.slider-arrow.left');
+      var nextButton = document.querySelector('.slider-arrow.right');
+      var dotsContainer = document.querySelector('.slider-dots');
+      var dots = [];
+
+      function showSlide(n) {
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].className = '';
+          dots[i].classList.remove('active');
+        }
+
+        slides[n].className = 'current';
+        dots[n].classList.add('active');
+        currentSlide = n;
+      }
+
+      function nextSlide() {
+        if (currentSlide === slides.length - 1) {
+          showSlide(0);
+        } else {
+          showSlide(currentSlide + 1);
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlide === 0) {
+          showSlide(slides.length - 1);
+        } else {
+          showSlide(currentSlide - 1);
+        }
+      }
+
+      for (var i = 0; i < slides.length; i++) {
+        var dot = document.createElement('div');
+        dot.className = 'dot';
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+        dot.addEventListener('click', (function(i) {
+          return function() {
+            showSlide(i);
+          }
+        })(i));
+      }
+
+      dots[0].classList.add('active');
+      nextButton.addEventListener('click', nextSlide);
+      prevButton.addEventListener('click', prevSlide);
+    </script>
+  </body>
+</html>
