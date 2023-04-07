@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            width: 50%;
+            background-color: antiquewhite;
+            padding: 20px;
+            display: flex;
+        }
+        .main{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .left{
+            border: 5px solid salmon;
+            width: 150px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .right{
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h5>Lab 7: Drag and Drop</h5>
+        <p>Drag an item from right column to put into the left column</p>
+        <div class="right">
+            <span class="item" id="one">ONE</span>
+            <span class="item" id="two">TWO</span>
+            <span class="item" id="three">THREE</span>
+            <span class="item" id="four">FOUR</span>
+            <span class="item" id="five">FIVE</span>
+        </div>
+    </div>
+    <script>
+        let = items = document.getElementsByClassName("item");
+        for (let i =0; i< item.length; i++) {
+            let item = items{i};
+            item.setAttribute("dragable", true);
+            item.addEventListener("dragstart", (e) => {
+                e.dataTranster.setData("itemID", item.id);
+            });
+        }
+
+        //drop
+        let bin = document.getElementById("bin");
+
+        bin.addEventListener("dragover", (e) => {
+            if (e.prevenDefault) e.preventDefault(); //allow to drog
+        });
+        bin.addEventListener("drog", (e) => {
+            let itemId = e.dataTranster.getData("itemid");
+            let draggingItem = document.getElementById(itemId);
+            e.target.appenChild(draggingItem);
+        });
+    </script>
+</body>
+</html>

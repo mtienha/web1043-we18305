@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video player</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		video {
+			display: block;
+			margin: 0 auto;
+			width: 400px;
+			height: 300px;
+		}
+
+		button {
+			margin: 10px;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<video id="myVideo">
+		<source src="nhac.mp4" type="video/mp4">
+	</video>
+	<div>
+		<button id="playBtn">Play</button>
+		<button id="pauseBtn">Pause</button>
+		<button id="stopBtn">Stop</button>
+		<button id="volumeUpBtn">Volume up</button>
+		<button id="volumeDownBtn">Volume down</button>
+		<button id="loopBtn">Loop</button>
+	</div>
+	<script>
+		var video = document.getElementById("myVideo");
+		var playBtn = document.getElementById("playBtn");
+		var pauseBtn = document.getElementById("pauseBtn");
+		var stopBtn = document.getElementById("stopBtn");
+		var volumeUpBtn = document.getElementById("volumeUpBtn");
+		var volumeDownBtn = document.getElementById("volumeDownBtn");
+		var loopBtn = document.getElementById("loopBtn");
+
+		// Bắt sự kiện khi bấm vào nút Play
+		playBtn.addEventListener("click", function() {
+			video.play();
+		});
+
+		// Bắt sự kiện khi bấm vào nút Pause
+		pauseBtn.addEventListener("click", function() {
+			video.pause();
+		});
+
+		// Bắt sự kiện khi bấm vào nút Stop
+		stopBtn.addEventListener("click", function() {
+			video.pause();
+			video.currentTime = 0;
+		});
+
+		// Bắt sự kiện khi bấm vào nút Volume up
+		volumeUpBtn.addEventListener("click", function() {
+			if(video.volume < 1) {
+				video.volume += 0.1;
+			}
+		});
+
+		// Bắt sự kiện khi bấm vào nút Volume down
+		volumeDownBtn.addEventListener("click", function() {
+			if(video.volume > 0) {
+				video.volume -= 0.1;
+			}
+		});
+
+		// Bắt sự kiện khi bấm vào nút Loop
+		loopBtn.addEventListener("click", function() {
+			if(video.loop === false) {
+				video.loop = true;
+				loopBtn.innerHTML = "Unloop";
+			} else {
+				video.loop = false;
+				loopBtn.innerHTML = "Loop";
+			}
+		});
+	</script>
+</body>
+</html>
